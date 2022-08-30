@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 336.356 s <<< FAILURE! - in TestSuite
+verifyAddCategory_Test_002(com.statwig.workspace.testrunner.AddNewCategoryTestRunner)  Time elapsed: 3.785 s  <<< FAILURE!
+org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <a href="/addNewCategory">...</a> is not clickable at point (284, 303). Other element would receive the click: <span class="txt-line text-muted" style="border: 2px solid rgb(216, 229, 251);">...</span>
+  (Session info: chrome=102.0.5005.63)
+Build info: version: '4.1.4', revision: '535d840ee2'
+System info: host: 'DESKTOP-08PQLRT', ip: '192.168.137.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_202'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [34e964e7954f304639566d148c8ca3a2, clickElement {id=a39eb84d-1bc6-42bf-990a-fbce192bdfad}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.63, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\SUNILK~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:64122}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:64122/devtoo..., se:cdpVersion: 102.0.5005.63, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (34e964e7954f304639566d148c8ca3a2)] -> xpath: //a[@href='/addNewCategory']]
+Session ID: 34e964e7954f304639566d148c8ca3a2
+	at com.statwig.workspace.testrunner.AddNewCategoryTestRunner.verifyAddCategory_Test_002(AddNewCategoryTestRunner.java:40)
+

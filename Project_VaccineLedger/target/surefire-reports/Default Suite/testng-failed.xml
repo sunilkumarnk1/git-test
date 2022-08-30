@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Default Suite]">
+  <listeners>
+    <listener class-name="com.statwig.workspace.utility.ReTryListner"/>
+  </listeners>
+  <test thread-count="5" verbose="0" name="test_AddNewCategory(failed)">
+    <classes>
+      <class name="com.statwig.workspace.testrunner.AddNewCategoryTestRunner">
+        <methods>
+          <include name="verifyAddCategory_Test_002"/>
+          <include name="executionCompleted"/>
+          <include name="readTestConfig"/>
+          <include name="beforeSuite"/>
+          <include name="classLogger"/>
+          <include name="closure"/>
+          <include name="init"/>
+          <include name="classClosure"/>
+          <include name="testClosure"/>
+        </methods>
+      </class> <!-- com.statwig.workspace.testrunner.AddNewCategoryTestRunner -->
+    </classes>
+  </test> <!-- test_AddNewCategory(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

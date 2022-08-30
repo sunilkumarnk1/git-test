@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[Welcome to test automation execution]]>
+    </line>
+    <line>
+      <![CDATA[Test is running in chrome and runmode as local]]>
+    </line>
+    <line>
+      <![CDATA[com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner started execution]]>
+    </line>
+    <line>
+      <![CDATA[verifyHomePage_Test_001 started execution]]>
+    </line>
+    <line>
+      <![CDATA[chrome browser is opened]]>
+    </line>
+    <line>
+      <![CDATA[Read expected title from properties file as :Vaccineledger]]>
+    </line>
+    <line>
+      <![CDATA[Got actual title from web page as :Vaccineledger]]>
+    </line>
+    <line>
+      <![CDATA[Validation completed]]>
+    </line>
+    <line>
+      <![CDATA[null result execution status passed is = true]]>
+    </line>
+    <line>
+      <![CDATA[verifyHomePage_Test_001 execution is completed]]>
+    </line>
+    <line>
+      <![CDATA[chrome is closed]]>
+    </line>
+    <line>
+      <![CDATA[com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner completed execution]]>
+    </line>
+    <line>
+      <![CDATA[All Tests completed on browserchrome]]>
+    </line>
+    <line>
+      <![CDATA[All Tests Completed - Reports are avilable in target/surefire-reports/emailable-report.html]]>
+    </line>
+    <line>
+      <![CDATA[Screenshots are available in src/resources/screenshots folder]]>
+    </line>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="7062" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:28 IST">
+    <groups>
+      <group name="regression">
+        <method signature="HomePageTitleValidationTestRunner.verifyHomePage_Test_001()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="verifyHomePage_Test_001" class="com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner"/>
+      </group> <!-- regression -->
+      <group name="smoke">
+        <method signature="HomePageTitleValidationTestRunner.verifyHomePage_Test_001()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="verifyHomePage_Test_001" class="com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner"/>
+      </group> <!-- smoke -->
+      <group name="uat">
+        <method signature="HomePageTitleValidationTestRunner.verifyHomePage_Test_001()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="verifyHomePage_Test_001" class="com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner"/>
+      </group> <!-- uat -->
+    </groups>
+    <test name="Surefire test" duration-ms="7062" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:28 IST">
+      <class name="com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="beforeSuite" is-config="true" duration-ms="8" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:21 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[Welcome to test automation execution]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="readTestConfig(java.lang.String,java.lang.String)[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="readTestConfig" is-config="true" duration-ms="6" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:21 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[local]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Test is running in chrome and runmode as local]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- readTestConfig -->
+        <test-method status="PASS" signature="classLogger()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="classLogger" is-config="true" duration-ms="0" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:21 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner started execution]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- classLogger -->
+        <test-method status="PASS" signature="init(java.lang.reflect.Method)[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="init" is-config="true" duration-ms="5767" started-at="2022-06-12T15:48:21 IST" finished-at="2022-06-12T15:48:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner.verifyHomePage_Test_001() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[verifyHomePage_Test_001 started execution]]>
+            </line>
+            <line>
+              <![CDATA[chrome browser is opened]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="verifyHomePage_Test_001()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="verifyHomePage_Test_001" duration-ms="418" started-at="2022-06-12T15:48:27 IST" finished-at="2022-06-12T15:48:27 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[Read expected title from properties file as :Vaccineledger]]>
+            </line>
+            <line>
+              <![CDATA[Got actual title from web page as :Vaccineledger]]>
+            </line>
+            <line>
+              <![CDATA[Validation completed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- verifyHomePage_Test_001 -->
+        <test-method status="PASS" signature="closure(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="closure" is-config="true" duration-ms="844" started-at="2022-06-12T15:48:27 IST" finished-at="2022-06-12T15:48:28 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyHomePage_Test_001 status=SUCCESS method=HomePageTitleValidationTestRunner.verifyHomePage_Test_001()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64] output=Read expected title from properties file as :Vaccineledger]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner.verifyHomePage_Test_001() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[null result execution status passed is = true]]>
+            </line>
+            <line>
+              <![CDATA[verifyHomePage_Test_001 execution is completed]]>
+            </line>
+            <line>
+              <![CDATA[chrome is closed]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- closure -->
+        <test-method status="PASS" signature="classClosure()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="classClosure" is-config="true" duration-ms="1" started-at="2022-06-12T15:48:28 IST" finished-at="2022-06-12T15:48:28 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner completed execution]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- classClosure -->
+        <test-method status="PASS" signature="testClosure()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="testClosure" is-config="true" duration-ms="0" started-at="2022-06-12T15:48:28 IST" finished-at="2022-06-12T15:48:28 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[All Tests completed on browserchrome]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testClosure -->
+        <test-method status="PASS" signature="executionCompleted()[pri:0, instance:com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner@32d2fa64]" name="executionCompleted" is-config="true" duration-ms="1" started-at="2022-06-12T15:48:28 IST" finished-at="2022-06-12T15:48:28 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[All Tests Completed - Reports are avilable in target/surefire-reports/emailable-report.html]]>
+            </line>
+            <line>
+              <![CDATA[Screenshots are available in src/resources/screenshots folder]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- executionCompleted -->
+      </class> <!-- com.statwig.workspace.testrunner.HomePageTitleValidationTestRunner -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
