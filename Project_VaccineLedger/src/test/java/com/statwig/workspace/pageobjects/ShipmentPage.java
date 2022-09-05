@@ -7,7 +7,6 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -323,17 +322,19 @@ public class ShipmentPage extends BasePage {
     }
 
     public void enterQuantityFromBatch(String limit) throws InterruptedException, AWTException {
-       
         List<WebElement> tableQuantityList = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])");
         System.out.println(tableQuantityList.size());
-        for (int i = 1; i < tableQuantityList.size(); i++) {
-            //String quantityNumber = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).getText();
-            //System.out.println(quantityNumber);
-            if (driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).getText() != limit) {
+        
+        for (int i = 1; i <= tableQuantityList.size();i++) {
+            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).getAttribute("value");
+            int quantityInterger = Integer.parseInt(quantityString);
+            System.out.println(quantityInterger);
+            int quantityLimit = 10000;
+            if (quantityInterger > quantityLimit) {
                 Thread.sleep(2000);
-                driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div[2]/div/form/div[5]/div[1]/div/div[2]/div/div/div[8]/div/div/div[2]/div/div/div[2]/div[2]/div[1]/div/div/input")).click();
-                driver.findElement(By.xpath("//div[@class='modal-content']//div[1]//div[1]//div[1]//div[8]//div[1]//button[1]//i[1]")).click();
-                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//*[@id=\"checker\"])[1]")).click();
+                driver.findElement(By.xpath("(//input[@type='checkbox'])["+i+"]")).click();
+                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])["+i+"]")).click();
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).click();
                 Thread.sleep(3000);
                 Robot robot  = new Robot();
                 robot.keyPress(KeyEvent.VK_CONTROL);
@@ -344,13 +345,14 @@ public class ShipmentPage extends BasePage {
                 robot.keyRelease(KeyEvent.VK_CONTROL);
                 Thread.sleep(3000);
                 //driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//*[@id=\\\"checker\\\"])[1]")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-                driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div[2]/div/form/div[5]/div[1]/div/div[2]/div/div/div[8]/div/div/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[6]/div/input")).sendKeys(limit);
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).sendKeys(limit);
                 //System.out.println(quantityNumber);
                 
             }
             //System.out.println("run");
-            break;
+            //break;
         }
+       
         //Thread.sleep(2000);
         }
 
