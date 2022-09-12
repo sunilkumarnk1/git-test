@@ -1,160 +1,331 @@
 package com.statwig.workspace.testrunner;
 
-import com.statwig.workspace.pageobjects.HomePage;
-import com.statwig.workspace.pageobjects.ShipmentPage;
-import com.statwig.workspace.utility.BasePage;
-import com.statwig.workspace.utility.BaseTest;
-import com.statwig.workspace.utility.CommonUtility;
-
 import java.awt.AWTException;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import com.statwig.workspace.pageobjects.HomePage;
+import com.statwig.workspace.pageobjects.ShipmentPage;
+import com.statwig.workspace.utility.BaseTest;
+import com.statwig.workspace.utility.CommonUtility;
+
 public class ShipmentTestRunner extends BaseTest {
 
-    @Test
-    public void verifyCreateShipmentWithOutOrderId_Test_001() throws InterruptedException, AWTException {
-        HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
-        Reporter.log("clicked on login button");
+	@Test
+	public void verifyCreateShipmentWithOutOrderId_Test_001() throws InterruptedException, AWTException {
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
 
-        String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
-        homePage.enterEmailId(emailId);
-        Reporter.log(emailId+" is Entered");
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
 
-        homePage.clickContinueButton();
-        Reporter.log("Clicked on Continue Button");
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
 
-        String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");
-        homePage.enterOtp(otp);
-        Reporter.log("Otp is Entered");
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
 
-        homePage.clickVerifyButton();
-        Reporter.log("Clicked on Verify Button");
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
 
-        ShipmentPage sp=PageFactory.initElements(super.driver,ShipmentPage.class);
-        sp.clickOnShipmentPage();
-        sp.clickCreateShipment();
-        sp.clickSelectOrganizationLocation();
-        String org_location=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.orglocation");
-        sp.selectOrganizationLocation(org_location);
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+		sp.clickCreateShipment();
+		sp.clickSelectOrganizationLocation();
+		String org_location = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.orglocation");
+		sp.selectOrganizationLocation(org_location);
 
-        sp.clickToOrgType();
-        String toOrg_Type=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.toOrgType");
-        sp.selectToOrgType(toOrg_Type);
+		sp.clickToOrgType();
+		String toOrg_Type = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.toOrgType");
+		sp.selectToOrgType(toOrg_Type);
 
-        sp.clickToOrgName();
-        String toOrgName=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.toOrgName");
-        sp.selectOrgName(toOrgName);
+		sp.clickToOrgName();
+		String toOrgName = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.toOrgName");
+		sp.selectOrgName(toOrgName);
 
-        sp.clickOnDeliveryLocation();
-        String deliveryLocation=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliverylocation");
-        sp.selectDeliveryLocation(deliveryLocation);
+		sp.clickOnDeliveryLocation();
+		String deliveryLocation = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverylocation");
+		sp.selectDeliveryLocation(deliveryLocation);
 
-        String transitNumber=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.transitnumber");
-        sp.enterTransitNumber(transitNumber);
+		String transitNumber = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.transitnumber");
+		sp.enterTransitNumber(transitNumber);
 
-        String labelCode=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.labelcode");
-        sp.enterLabelCode(labelCode);
+		String labelCode = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.labelcode");
+		sp.enterLabelCode(labelCode);
 
-        sp.clickOnShipmentDate();
-        String shipmentYear=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentyear");
-        String shipmentMonth=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentmonth");
-        String shipmentDate=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentdate");
-        sp.enterShipmentDate(shipmentYear,shipmentMonth,shipmentDate);
+		sp.clickOnShipmentDate();
+		String shipmentYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentyear");
+		String shipmentMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentmonth");
+		String shipmentDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentdate");
+		sp.enterShipmentDate(shipmentYear, shipmentMonth, shipmentDate);
 
-        sp.clickOnDeliveryDate();
-        String deliveryYear=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliveryyear");
-        String deliveryMonth=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliverymonth");
-        String deliveryDate=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliverydate");
-        sp.enterdeliveryDate(deliveryYear,deliveryMonth,deliveryDate);
+		sp.clickOnDeliveryDate();
+		String deliveryYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliveryyear");
+		String deliveryMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverymonth");
+		String deliveryDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverydate");
+		sp.enterdeliveryDate(deliveryYear, deliveryMonth, deliveryDate);
 
-        sp.clickOnProductCategory();
-        String productCategory=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.productcategory");
-        sp.selectProductCategory(productCategory);
+		sp.clickOnProductCategory();
+		String productCategory = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.productcategory");
+		sp.selectProductCategory(productCategory);
 
-        sp.clickOnProductName();
-        String productName=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.productname");
-        sp.selectProductName(productName);
+		sp.clickOnProductName();
+		String productName = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.productname");
+		sp.selectProductName(productName);
 
-//        String quantity_value=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.productquantity");
-//        sp.enterQuantity(quantity_value);
+		sp.clickOnFetchButton();
+		String quantity = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.batchquantity");
+		sp.enterQuantityFromBatchWithOutOrder(quantity);
+		sp.clickOnNextButton();
+		sp.clickOnCreateShipment();
+	}
 
-        sp.clickOnFetchButton();
-//        String edit_quantity=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.productquantity");
-//        sp.editQuantity(edit_quantity);
-        
-        String quantity=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.batchquantity");
-        sp.enterQuantityFromBatch(quantity);
-//        sp.clickCheckBox();
-//        sp.clickPencilEdit();
-        sp.clickOnNextButton();
-        sp.clickCreateShipment();
-    }
+	@Test
+	public void verifyCreateShipmentWithOrderFullQuantity_Test_002() throws InterruptedException, AWTException {
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
 
-    @Test
-    public void verifyCreateShipmentWithOrder_Test_002() throws InterruptedException, AWTException {
-        HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
-        Reporter.log("clicked on login button");
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
 
-        String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
-        homePage.enterEmailId(emailId);
-        Reporter.log(emailId+" is Entered");
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
 
-        homePage.clickContinueButton();
-        Reporter.log("Clicked on Continue Button");
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
 
-        String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");
-        homePage.enterOtp(otp);
-        Reporter.log("Otp is Entered");
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
 
-        homePage.clickVerifyButton();
-        Reporter.log("Clicked on Verify Button");
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+		sp.clickCreateShipment();
 
-        ShipmentPage sp=PageFactory.initElements(super.driver,ShipmentPage.class);
-        sp.clickOnShipmentPage();
-        sp.clickCreateShipment();
+		String order_id = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.orderid");
+		sp.clickOnOrderId();
+		sp.enterOrderId(order_id);
+		sp.clickSelectOrganizationLocation();
+		String org_location = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.orglocation");
+		sp.selectOrganizationLocation(org_location);
 
-        String order_id=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.orderid");
-        sp.clickOnOrderId();
-        sp.enterOrderId(order_id);
-        sp.clickSelectOrganizationLocation();
-        String org_location=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.orglocation");
-        sp.selectOrganizationLocation(org_location);
+		String transitNumber = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.transitnumber");
+		sp.enterTransitNumber(transitNumber);
 
-        String transitNumber=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.transitnumber");
-        sp.enterTransitNumber(transitNumber);
+		String labelCode = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.labelcode");
+		sp.enterLabelCode(labelCode);
 
-        String labelCode=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.labelcode");
-        sp.enterLabelCode(labelCode);
+		sp.clickOnShipmentDate();
+		String shipmentYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentyear");
+		String shipmentMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentmonth");
+		String shipmentDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentdate");
+		sp.enterShipmentDate(shipmentYear, shipmentMonth, shipmentDate);
 
-        sp.clickOnShipmentDate();
-        String shipmentYear=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentyear");
-        String shipmentMonth=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentmonth");
-        String shipmentDate=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.shipmentdate");
-        sp.enterShipmentDate(shipmentYear,shipmentMonth,shipmentDate);
+		sp.clickOnDeliveryDate();
+		String deliveryYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliveryyear");
+		String deliveryMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverymonth");
+		String deliveryDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverydate");
+		sp.enterdeliveryDate(deliveryYear, deliveryMonth, deliveryDate);
 
-        sp.clickOnDeliveryDate();
-        String deliveryYear=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliveryyear");
-        String deliveryMonth=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliverymonth");
-        String deliveryDate=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.deliverydate");
-        sp.enterdeliveryDate(deliveryYear,deliveryMonth,deliveryDate);
+		sp.clickOnFetchButton();
+		///for full quantity just enter the required quantity in batch quantity
+		String quantity = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.batchquantity");
+		sp.enterQuantityFromBatchWithOrderFull(quantity);
+		sp.clickOnNextButton();
+		sp.clickOnCreateShipment();
+	}
 
-        sp.clickOnFetchButton();
-        String enterQuantity=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.batchquantity");
-        sp.enterQuantityFromBatch(enterQuantity);
-//        String enterQuantity=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.batchquantity");
-//        sp.enterQuantityFromBatch(enterQuantity);
-//        sp.clickCheckBox();
-//        sp.clickPencilEdit();
-//
-//        String edit_quantity=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.batchquantity");
-//        sp.editQuantity(edit_quantity);
-//        sp.clickOnNextButton();
-//        sp.clickCreateShipment();
+	@Test
+	public void verifyCreateShipmentWithOrderPartial_Test_003() throws InterruptedException, AWTException {
+		//for partial quantity
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
 
-    }
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
+
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
+
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
+
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
+
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+		sp.clickCreateShipment();
+
+		String order_id = CommonUtility.getPropertyValue("shipmentpartial", "shipmentpartial.partialorderid");
+		sp.clickOnOrderId();
+		sp.enterOrderId(order_id);
+		sp.clickSelectOrganizationLocation();
+		String org_location = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.orglocation");
+		sp.selectOrganizationLocation(org_location);
+
+		String transitNumber = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.transitnumber");
+		sp.enterTransitNumber(transitNumber);
+
+		String labelCode = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.labelcode");
+		sp.enterLabelCode(labelCode);
+
+		sp.clickOnShipmentDate();
+		String shipmentYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentyear");
+		String shipmentMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentmonth");
+		String shipmentDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentdate");
+		sp.enterShipmentDate(shipmentYear, shipmentMonth, shipmentDate);
+
+		sp.clickOnDeliveryDate();
+		String deliveryYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliveryyear");
+		String deliveryMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverymonth");
+		String deliveryDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverydate");
+		sp.enterdeliveryDate(deliveryYear, deliveryMonth, deliveryDate);
+
+		sp.clickOnFetchButton();
+		String partialQuantity = CommonUtility.getPropertyValue("shipmentpartial", "shipmentpartial.batchquantity");
+		sp.partialQuantityOrderFromBatch(partialQuantity);
+		sp.clickOnNextButton();
+		sp.clickOnCreateShipment();
+	}
+
+	@Test
+	public void createShipmentReferenceShipment_Test_004() throws InterruptedException {
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
+
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
+
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
+
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
+
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
+
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+		sp.clickCreateShipment();
+
+		String referenceId=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.refid");
+		sp.enterReferenceShipmentId(referenceId);
+		sp.clickReferenceFetchButton();
+
+		sp.clickSelectOrganizationLocation();
+		String org_location = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.orglocation");
+		sp.selectOrganizationLocation(org_location);
+
+		sp.clickToOrgType();
+		String toOrg_Type = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.toOrgType");
+		sp.selectToOrgType(toOrg_Type);
+
+		sp.clickToOrgName();
+		String refToOrg=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.reftoOrgName");
+		sp.selectRefToOrgName(refToOrg);
+
+		sp.clickOnDeliveryLocation();
+		String refDeliveryLocation = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.refdeliverylocation");
+		sp.selectDeliveryLocation(refDeliveryLocation);
+
+		String transitNumber = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.transitnumber");
+		sp.enterTransitNumber(transitNumber);
+
+		String labelCode = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.labelcode");
+		sp.enterLabelCode(labelCode);
+
+		sp.clickOnShipmentDate();
+		String shipmentYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentyear");
+		String shipmentMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentmonth");
+		String shipmentDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.shipmentdate");
+		sp.enterShipmentDate(shipmentYear, shipmentMonth, shipmentDate);
+
+		sp.clickOnDeliveryDate();
+		String deliveryYear = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliveryyear");
+		String deliveryMonth = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverymonth");
+		String deliveryDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverydate");
+		sp.enterdeliveryDate(deliveryYear, deliveryMonth, deliveryDate);
+
+		sp.clickOnCreateShipment();
+	}
+
+	@Test
+	public void verifyUpdateShipmentToConsignee_Test_005() throws InterruptedException {
+		//update shipments: SH101460, SH101459,SH101454,SH101449,SH101448
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
+
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
+
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
+
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
+
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
+
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+		sp.clickUpdateShipmentButton();
+
+		String update_shipmentId=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.updateshipmentid");
+		sp.enterUpdateShipmentId(update_shipmentId);
+		sp.clickUpdateButton();
+
+		String update_location=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.updatelocation");
+		sp.enterUpdateLocation(update_location);
+		sp.clickUpdateStatusButton();
+	}
+
+	@Test
+	public void verifyReceiveShipment_Test_006() throws InterruptedException {
+		//html/body/div[1]/div/div/div[2]/div[2]/div/div[4]/div/table/tbody/tr[1]/td[6]/div/a
+		//SH101460,SH101459,SH101456
+		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
+		homePage.login();
+		Reporter.log("clicked on login button");
+
+		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.receiverOrgmailId");
+		homePage.enterEmailId(emailId);
+		Reporter.log(emailId + " is Entered");
+
+		homePage.clickContinueButton();
+		Reporter.log("Clicked on Continue Button");
+
+		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
+		homePage.enterOtp(otp);
+		Reporter.log("Otp is Entered");
+
+		homePage.clickVerifyButton();
+		Reporter.log("Clicked on Verify Button");
+
+		ShipmentPage sp = PageFactory.initElements(super.driver, ShipmentPage.class);
+		sp.clickOnShipmentPage();
+
+		String receivingShipmentId=CommonUtility.getPropertyValue("shipmentpage","shipmentpage.receiveshipmentid");
+		sp.receiveShipment(receivingShipmentId);
+		Thread.sleep(2000);
+	}
 }
