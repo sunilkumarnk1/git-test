@@ -1,20 +1,16 @@
 package com.statwig.workspace.pageobjects;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.time.Duration;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.statwig.workspace.utility.BasePage;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
-import com.statwig.workspace.utility.BasePage;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+import java.util.List;
 
 public class ShipmentPage extends BasePage {
 
@@ -28,14 +24,16 @@ public class ShipmentPage extends BasePage {
         shipmentPageButton.click();
     }
 
-    public void clickCreateShipment() {
+    public void clickCreateShipment() throws InterruptedException {
         WebElement createShipment_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//b[text()='Create Shipment']");
         createShipment_ele.click();
+        Thread.sleep(2000);
     }
 
-    public void clickSelectOrganizationLocation() {
+    public void clickSelectOrganizationLocation() throws InterruptedException {
         WebElement org_loc_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[2]");
         org_loc_ele.click();
+        Thread.sleep(2000);
     }
 
     public void selectOrganizationLocation(String orgLocation) throws InterruptedException {
@@ -99,6 +97,44 @@ public class ShipmentPage extends BasePage {
         }
         if (count != 0) {
             System.out.println(toOrgName + " has been selected in the DD");
+        } else {
+            System.out.println("options you want to select is not available in DD");
+        }
+        Thread.sleep(2000);
+    }
+
+    public void selectRefToOrgName(String reftoOrgName) throws InterruptedException {
+        int count = 0;
+        List<WebElement> toOrgName_ele = ShipmentPage.super.findAllElements(All_Locators.XPATH, "//div[text()='" + reftoOrgName + "']");
+        for (WebElement ele : toOrgName_ele) {
+            reftoOrgName = ele.getText();
+            if (reftoOrgName.contains(reftoOrgName)) {
+                ele.click();
+                count++;
+                break;
+            }
+        }
+        if (count != 0) {
+            System.out.println(reftoOrgName + " has been selected in the DD");
+        } else {
+            System.out.println("options you want to select is not available in DD");
+        }
+        Thread.sleep(2000);
+    }
+
+    public void refDeliveryLocation(String refDeliveryLoc) throws InterruptedException {
+        int count = 0;
+        List<WebElement> deleviryLocation_ele = ShipmentPage.super.findAllElements(All_Locators.XPATH, "//div[text()='" + refDeliveryLoc + "']");
+        for (WebElement ele : deleviryLocation_ele) {
+            refDeliveryLoc = ele.getText();
+            if (refDeliveryLoc.contains(refDeliveryLoc)) {
+                ele.click();
+                count++;
+                break;
+            }
+        }
+        if (count != 0) {
+            System.out.println(refDeliveryLoc + " has been selected in the DD");
         } else {
             System.out.println("options you want to select is not available in DD");
         }
@@ -281,62 +317,62 @@ public class ShipmentPage extends BasePage {
 
     public void clickCheckBox() throws InterruptedException {
         Thread.sleep(2000);
-        WebElement checkBox_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//div[@class='rTableRow mb-1']/input[@id='0']");
+        WebElement checkBox_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class='rTableRow mb-1']/input[@id='0']");
         checkBox_ele.click();
     }
 
     public void clickPencilEdit() throws InterruptedException {
         Thread.sleep(2000);
-        WebElement pencilEdit_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"(//i)[1]");
+        WebElement pencilEdit_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//i)[1]");
         pencilEdit_ele.click();
     }
 
     public void editQuantity(String excatQuantity) throws InterruptedException {
         Thread.sleep(2000);
-        WebElement editQuantity_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//input[@value='"+excatQuantity+"']");
+        WebElement editQuantity_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@value='" + excatQuantity + "']");
         editQuantity_ele.click();
         editQuantity_ele.clear();
         editQuantity_ele.sendKeys(excatQuantity);
     }
 
-    public void clickOnNextButton(){
-        WebElement nextButton_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//button[text()='Next']");
+    public void clickOnNextButton() {
+        WebElement nextButton_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//button[text()='Next']");
         nextButton_ele.click();
         System.out.println("Clicked Next");
     }
 
-    public void clickOnCreateShipment(){
-        WebElement createShipment_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//span[text()='Create Shipment']");
+    public void clickOnCreateShipment() {
+        WebElement createShipment_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Create Shipment']");
         createShipment_ele.click();
         System.out.println("Shipment Created");
     }
 
     public void clickOnOrderId() throws InterruptedException {
-        WebElement orderid_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"(//div[contains(@class,'css-ackcql')])[1]");
+        WebElement orderid_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[1]");
         orderid_ele.click();
     }
 
-    public void enterOrderId(String orderId){
-        WebElement enterOrderId_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//div[text()='"+orderId+"']");
+    public void enterOrderId(String orderId) {
+        WebElement enterOrderId_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[text()='" + orderId + "']");
         enterOrderId_ele.click();
     }
 
-    public void enterQuantityFromBatch(String limit) throws InterruptedException, AWTException {
+    public void enterQuantityFromBatchWithOutOrder(String limit) throws InterruptedException, AWTException {
         List<WebElement> tableQuantityList = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])");
         System.out.println(tableQuantityList.size());
-        
-        for (int i = 1; i <= tableQuantityList.size();i++) {
-            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).getAttribute("value");
+
+        for (int i = 1; i <= tableQuantityList.size(); i++) {
+            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).getAttribute("value");
             int quantityInterger = Integer.parseInt(quantityString);
             System.out.println(quantityInterger);
-            int quantityLimit = 10000;
+            int quantityLimit = 500;
             if (quantityInterger > quantityLimit) {
                 Thread.sleep(2000);
-                driver.findElement(By.xpath("(//input[@type='checkbox'])["+i+"]")).click();
-                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])["+i+"]")).click();
-                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).click();
+                driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).click();
                 Thread.sleep(3000);
-                Robot robot  = new Robot();
+                Robot robot = new Robot();
                 robot.keyPress(KeyEvent.VK_CONTROL);
                 robot.keyPress(KeyEvent.VK_A);
                 robot.keyPress(KeyEvent.VK_DELETE);
@@ -344,18 +380,123 @@ public class ShipmentPage extends BasePage {
                 robot.keyRelease(KeyEvent.VK_A);
                 robot.keyRelease(KeyEvent.VK_CONTROL);
                 Thread.sleep(3000);
-                //driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//*[@id=\\\"checker\\\"])[1]")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" +i +"]")).sendKeys(limit);
-                //System.out.println(quantityNumber);
-                
-            }
-            //System.out.println("run");
-            //break;
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).sendKeys(limit);
+            } else System.out.println("The entered quantity is not present in any one the batches");
+            break;
         }
-       
-        //Thread.sleep(2000);
-        }
-
     }
-//}
+
+    public void enterQuantityFromBatchWithOrderFull(String limit) throws InterruptedException, AWTException {
+        //order id:PO101407 for full quantity
+        List<WebElement> tableQuantityList = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])");
+        System.out.println(tableQuantityList.size());
+
+        for (int i = 1; i <= tableQuantityList.size(); i++) {
+            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).getAttribute("value");
+            int quantityInterger = Integer.parseInt(quantityString);
+            System.out.println(quantityInterger);
+            int quantityLimit = 5000;
+            if (quantityInterger > quantityLimit) {
+                Thread.sleep(2000);
+                driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).click();
+                Thread.sleep(3000);
+                Robot robot = new Robot();
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.keyPress(KeyEvent.VK_A);
+                robot.keyPress(KeyEvent.VK_DELETE);
+                robot.keyRelease(KeyEvent.VK_DELETE);
+                robot.keyRelease(KeyEvent.VK_A);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+                Thread.sleep(3000);
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).sendKeys(limit);
+            } else System.out.println("The entered quantity is not present in any one the batches");
+            break;
+        }
+    }
+
+    public void partialQuantityOrderFromBatch(String partial) throws InterruptedException, AWTException {
+        List<WebElement> tableQuantityList = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])");
+        System.out.println(tableQuantityList.size());
+
+        for (int i = 1; i <= tableQuantityList.size(); i++) {
+            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).getAttribute("value");
+            int quantityInterger = Integer.parseInt(quantityString);
+            System.out.println(quantityInterger);
+            int quantitypartial = 4999;
+            if (quantityInterger > quantitypartial) {
+                Thread.sleep(2000);
+                driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])[" + i + "]")).click();
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).click();
+                Thread.sleep(3000);
+                Robot robot = new Robot();
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.keyPress(KeyEvent.VK_A);
+                robot.keyPress(KeyEvent.VK_DELETE);
+                robot.keyRelease(KeyEvent.VK_DELETE);
+                robot.keyRelease(KeyEvent.VK_A);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+                Thread.sleep(3000);
+                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).sendKeys(partial);
+            } else System.out.println("The entered quantity is not present in any one the batches");
+            break;
+        }
+    }
+
+    public void enterReferenceShipmentId(String shipmentRefId) {
+        //Reference Id: SH101447, SH101445, SH101441, SH101418
+        WebElement refShipment_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Reference Shipment ID']");
+        refShipment_ele.sendKeys(shipmentRefId);
+    }
+
+    public void clickReferenceFetchButton() {
+        WebElement ref_fetch = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Fetch']");
+        ref_fetch.click();
+    }
+
+    public void clickUpdateShipmentButton() {
+        WebElement updateButton = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span/b[text()='Update Shipment']");
+        updateButton.click();
+    }
+
+    public void enterUpdateShipmentId(String updateShipment) throws InterruptedException {
+        Actions actions = new Actions(driver);
+        ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Shipment ID']").sendKeys(updateShipment);
+        actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+        Thread.sleep(2000);
+    }
+
+    public void clickUpdateButton() {
+        WebElement updateButton = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Update Shipment']");
+        updateButton.click();
+    }
+
+    public void enterUpdateLocation(String updatelocation) {
+        WebElement updatelocation_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder=' Required']");
+        updatelocation_ele.sendKeys(updatelocation);
+    }
+
+    public void clickUpdateStatusButton() {
+        WebElement updateStatus_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Update Status']");
+        updateStatus_ele.click();
+    }
+
+    public void receiveShipment(String receiveShipmentId) throws InterruptedException {
+        List<WebElement> viewButtons = ShipmentPage.super.findAllElements(All_Locators.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/div/div[4]/div/table/tbody/tr/td[6]/div/a");
+        List<WebElement> receivingShipmentId = ShipmentPage.super.findAllElements(All_Locators.XPATH, "//h5[text()='" + receiveShipmentId + "']");
+        for (int i = 1; i <= viewButtons.size(); i++) {
+            for (WebElement ele : receivingShipmentId) {
+                receiveShipmentId = ele.getText();
+                if (receiveShipmentId.equalsIgnoreCase(receiveShipmentId)) {
+                    driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div[2]/div/div[4]/div/table/tbody/tr[" + i + "]/td[6]/div/a")).click();
+                } else System.out.println("Entered Receiving shipment Id is not found");
+                break;
+            }
+        }
+        Thread.sleep(5000);
+    }
+}
+
 
