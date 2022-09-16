@@ -16,14 +16,15 @@ public class AddNewInventoryTestRunner extends BaseTest {
     @Test(groups = {"smoke"})
     public void verifyAddNewInventory_Test_003() throws InterruptedException {
         HomePage homePage=PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
+       // homePage.login();
         Reporter.log("clicked on login button");
 
         String emailId=CommonUtility.getPropertyValue("homepage","homepage.emailid");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-        homePage.clickContinueButton();
+        //homePage.clickContinueButton();
+        homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
         String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");

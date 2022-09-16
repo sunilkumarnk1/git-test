@@ -17,14 +17,15 @@ public class OrderTestRunner extends BaseTest {
     @Test
     public void verifyCreateOrderManual_Test_001() throws InterruptedException {
         HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
+       // homePage.login();
         Reporter.log("clicked on login button");
 
         String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-        homePage.clickContinueButton();
+        //homePage.clickContinueButton();
+        homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
         String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");
@@ -91,14 +92,15 @@ public class OrderTestRunner extends BaseTest {
     @Test
     public void verifyCreateOrderByImport_Test_002() throws InterruptedException, AWTException {
         HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
+       // homePage.login();
         Reporter.log("clicked on login button");
 
         String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-        homePage.clickContinueButton();
+       // homePage.clickContinueButton();
+        homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
         String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");
@@ -119,14 +121,15 @@ public class OrderTestRunner extends BaseTest {
     @Test
     public void verifyAcceptOrRejectOrder_Test_003() throws InterruptedException {
         HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
+       // homePage.login();
         Reporter.log("clicked on login button");
 
         String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-        homePage.clickContinueButton();
+       // homePage.clickContinueButton();
+        homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
         String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");
@@ -150,14 +153,15 @@ public class OrderTestRunner extends BaseTest {
     @Test
     public void verifyCancelOrder_Test_004() throws InterruptedException {
         HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-        homePage.login();
+       // homePage.login();
         Reporter.log("clicked on login button");
 
         String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-        homePage.clickContinueButton();
+        //homePage.clickContinueButton();
+        homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
         String otp=CommonUtility.getPropertyValue("homepage","homepage.otp");

@@ -17,14 +17,15 @@ public class ShipmentTestRunner extends BaseTest {
 	@Test
 	public void verifyCreateShipmentWithOutOrderId_Test_001() throws InterruptedException, AWTException {
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
@@ -89,14 +90,15 @@ public class ShipmentTestRunner extends BaseTest {
 	@Test
 	public void verifyCreateShipmentWithOrderFullQuantity_Test_002() throws InterruptedException, AWTException {
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
@@ -135,11 +137,7 @@ public class ShipmentTestRunner extends BaseTest {
 		String deliveryDate = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.deliverydate");
 		sp.enterdeliveryDate(deliveryYear, deliveryMonth, deliveryDate);
 
-		sp.clickOnFetchButton();
-		///for full quantity just enter the required quantity in batch quantity
-		String quantity = CommonUtility.getPropertyValue("shipmentpage", "shipmentpage.batchquantity");
-		sp.enterQuantityFromBatchWithOrderFull(quantity);
-		sp.clickOnNextButton();
+		sp.enterQuantityFromBatchWithOrderFull();
 		sp.clickOnCreateShipment();
 	}
 
@@ -147,14 +145,15 @@ public class ShipmentTestRunner extends BaseTest {
 	public void verifyCreateShipmentWithOrderPartial_Test_003() throws InterruptedException, AWTException {
 		//for partial quantity
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
@@ -203,14 +202,15 @@ public class ShipmentTestRunner extends BaseTest {
 	@Test
 	public void createShipmentReferenceShipment_Test_004() throws InterruptedException {
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
@@ -269,14 +269,15 @@ public class ShipmentTestRunner extends BaseTest {
 	public void verifyUpdateShipmentToConsignee_Test_005() throws InterruptedException {
 		//update shipments: SH101460, SH101459,SH101454,SH101449,SH101448
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.emailid");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
@@ -304,14 +305,15 @@ public class ShipmentTestRunner extends BaseTest {
 		//html/body/div[1]/div/div/div[2]/div[2]/div/div[4]/div/table/tbody/tr[1]/td[6]/div/a
 		//SH101460,SH101459,SH101456
 		HomePage homePage = PageFactory.initElements(super.driver, HomePage.class);
-		homePage.login();
+		//homePage.login();
 		Reporter.log("clicked on login button");
 
 		String emailId = CommonUtility.getPropertyValue("homepage", "homepage.receiverOrgmailId");
 		homePage.enterEmailId(emailId);
 		Reporter.log(emailId + " is Entered");
 
-		homePage.clickContinueButton();
+//		homePage.clickContinueButton();
+		homePage.clickSigninButton();
 		Reporter.log("Clicked on Continue Button");
 
 		String otp = CommonUtility.getPropertyValue("homepage", "homepage.otp");
