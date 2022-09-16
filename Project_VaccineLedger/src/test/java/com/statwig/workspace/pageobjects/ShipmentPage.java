@@ -1,6 +1,7 @@
 package com.statwig.workspace.pageobjects;
 
 import com.statwig.workspace.utility.BasePage;
+import com.statwig.workspace.utility.CommonUtility;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -386,34 +387,27 @@ public class ShipmentPage extends BasePage {
         }
     }
 
-    public void enterQuantityFromBatchWithOrderFull(String limit) throws InterruptedException, AWTException {
-        //order id:PO101407 for full quantity
-        List<WebElement> tableQuantityList = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])");
-        System.out.println(tableQuantityList.size());
-
-        for (int i = 1; i <= tableQuantityList.size(); i++) {
-            String quantityString = driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).getAttribute("value");
-            int quantityInterger = Integer.parseInt(quantityString);
-            System.out.println(quantityInterger);
-            int quantityLimit = 5000;
-            if (quantityInterger > quantityLimit) {
-                Thread.sleep(2000);
+    public void enterQuantityFromBatchWithOrderFull() throws InterruptedException, AWTException {
+        //order id:PO101410
+        List<WebElement> fetchbuttons = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[contains(text(),'Fetch')])");
+        System.out.println(fetchbuttons.size());
+        for (int i = 1; i < fetchbuttons.size(); i++) {
+            if (fetchbuttons.size()>1) {
+                driver.findElement(By.xpath("(//div[contains(text(),'Fetch')])[" + i + "]")).click();
                 driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")).click();
-                driver.findElement(By.xpath("(//i[@class='fa fa-pencil text-center'])[" + i + "]")).click();
-                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).click();
-                Thread.sleep(3000);
-                Robot robot = new Robot();
-                robot.keyPress(KeyEvent.VK_CONTROL);
-                robot.keyPress(KeyEvent.VK_A);
-                robot.keyPress(KeyEvent.VK_DELETE);
-                robot.keyRelease(KeyEvent.VK_DELETE);
-                robot.keyRelease(KeyEvent.VK_A);
-                robot.keyRelease(KeyEvent.VK_CONTROL);
-                Thread.sleep(3000);
-                driver.findElement(By.xpath("(//div[@class='rTableRow mb-1']//input[@class='form-control text-center input1'][1])[" + i + "]")).sendKeys(limit);
-            } else System.out.println("The entered quantity is not present in any one the batches");
-            break;
+                driver.findElement(By.xpath("//button[text()='Next']")).click();
+                Alert a = driver.switchTo().alert();
+                a.accept();
+            }else {
+                driver.findElement(By.xpath("(//div[contains(text(),'Fetch')])[1]")).click();
+                driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
+                driver.findElement(By.xpath("//button[text()='Next']")).click();
+                Alert a = driver.switchTo().alert();
+                a.accept();
+            }
+            Thread.sleep(2000);
         }
+
     }
 
     public void partialQuantityOrderFromBatch(String partial) throws InterruptedException, AWTException {
