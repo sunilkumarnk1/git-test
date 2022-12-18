@@ -27,7 +27,7 @@ public class HomePage extends BasePage {
 	}
 
 	public SignUpPage clickSignUpButton() {
-		WebElement signUpButton = HomePage.super.findAnyElement(All_Locators.XPATH, "//a[text()='Signup']");
+		WebElement signUpButton = HomePage.super.findAnyElement(All_Locators.XPATH, "//button[text()='Sign Up']");
 		signUpButton.click();
 		return new SignUpPage(super.driver);
 	}
@@ -38,8 +38,6 @@ public class HomePage extends BasePage {
 	}
 
 	public void enterEmailId(String email) {
-		//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']
-		//input[@name='email']
 		WebElement email_ele = HomePage.super.findAnyElement(All_Locators.XPATH, "//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']");
 		email_ele.sendKeys(email);
 	}
@@ -62,11 +60,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickVerifyButton() throws InterruptedException {
-		//button[text()='Verify']
-		//button[text()='VERIFY']
-		WebElement verify_ele = HomePage.super.findAnyElement(All_Locators.XPATH, "//button[text()='Verify']");
+		WebElement verify_ele = HomePage.super.findAnyElement(All_Locators.XPATH,"//section[@class='call-by-action']/button");
 		verify_ele.click();
-		Thread.sleep(5000);
 	}
 
 	public void clickOnSearch() throws InterruptedException {
@@ -75,6 +70,10 @@ public class HomePage extends BasePage {
 		Thread.sleep(2000);
 		// input[@id='controlled-demo']
 		// implicit or explicit
+	}
+	public void languageChange(){
+		driver.findElement(By.xpath("//section[@class='language-list']/preceding::p[1]")).click();
+		driver.findElement(By.xpath("//p[text()='English']")).click();
 	}
 
 	public void enterProductName(String productName) throws InterruptedException {

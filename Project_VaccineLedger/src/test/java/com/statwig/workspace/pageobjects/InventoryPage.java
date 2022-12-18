@@ -35,16 +35,17 @@ public class InventoryPage extends BasePage {
 		Thread.sleep(5000);
 		WebElement productCategoryButton = InventoryPage.super.findAnyElement(All_Locators.CLASSNAME,
 				"select-placeholder-text-prod-category");
+
 		productCategoryButton.click();
 	}
 
 	public void sendTextIntoSelectProductCategory(String selectProduct) throws InterruptedException {
-		FluentWait<WebDriver> wait = new FluentWait<>(driver);
-		wait.withTimeout(Duration.ofSeconds(120));
-		wait.pollingEvery(Duration.ofSeconds(1));
-		wait.ignoring(NoSuchElementException.class);
-		WebElement ele_category = wait
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=' css-yt9ioa-option']")));
+//		FluentWait<WebDriver> wait = new FluentWait<>(driver);
+//		wait.withTimeout(Duration.ofSeconds(120));
+//		wait.pollingEvery(Duration.ofSeconds(1));
+//		wait.ignoring(NoSuchElementException.class);
+//		WebElement ele_category = wait
+//				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=' css-yt9ioa-option']")));
 		List<WebElement> list = driver.findElements(By.xpath("//div[@aria-disabled='false']"));
 		System.out.println("size of the list is:" + list.size());
 
@@ -70,9 +71,8 @@ public class InventoryPage extends BasePage {
 		wait.withTimeout(Duration.ofSeconds(120));
 		wait.pollingEvery(Duration.ofSeconds(1));
 		wait.ignoring(NoSuchElementException.class);
-		WebElement ele_category = wait
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=' css-yt9ioa-option']")));
-		List<WebElement> listOfProductNames = driver.findElements(By.xpath("//div[@aria-disabled='false']"));
+
+		List<WebElement> listOfProductNames = driver.findElements(By.xpath("//div[text()='"+productName+"']"));
 		for (WebElement ele : listOfProductNames) {
 			String text = ele.getText();
 			if (text.equalsIgnoreCase(productName)) {
@@ -107,71 +107,82 @@ public class InventoryPage extends BasePage {
 		manufacutedate_ele.click();
 		Thread.sleep(2000);
 	}
-
-	public void enterManufactureYearDate(String year_value, String month_value) throws InterruptedException {
+/*
+	public void enterManufactureYearDate(String year_value, String day_value) throws InterruptedException {
 		FluentWait<WebDriver> wait = new FluentWait<>(driver);
 		wait.withTimeout(Duration.ofSeconds(120));
 		wait.pollingEvery(Duration.ofSeconds(1));
 		wait.ignoring(NoSuchElementException.class);
 		// webelement year above the calendar
 		WebElement ele_year = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__month-container']/div[1]")));
+				.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__current-month']")));
 		while (true) {
 			String year = InventoryPage.super.findAnyElement(All_Locators.XPATH,
-					"//div[@class='react-datepicker__month-container']/div[1]").getText();
+					"//div[text()='"+year_value+"']").getText();
 			if (year.equalsIgnoreCase(year_value))
 				break;
 			else
-				driver.findElement(By.xpath("//button[@aria-label='Next Year']")).click();
+				driver.findElement(By.xpath("//button[@aria-label='Next Month']/span")).click();
 		}
-		// month selection
-		List<WebElement> allMonths = InventoryPage.super.findAllElements(All_Locators.XPATH,
-				"//div[@aria-selected='false']");
-		for (WebElement ele : allMonths) {
-			String months = ele.getText();
-			if (months.equalsIgnoreCase(month_value)) {
+		// date selection
+		List<WebElement> alldays = InventoryPage.super.findAllElements(All_Locators.XPATH,
+				"//div[@class='react-datepicker__week']");
+		for (WebElement ele : alldays) {
+			String day = ele.getText();
+			if (day.equalsIgnoreCase(day_value)) {
 				ele.click();
 				break;
 			}
 		}
 		Thread.sleep(5000);
 	}
-
+*/
 	public void clickExpireDate() {
 		WebElement expireDate_ele = InventoryPage.super.findAnyElement(All_Locators.XPATH,
 				"//input[@placeholder='Enter Exp Date']");
 		expireDate_ele.click();
 	}
+	
+	public void enterExpDate(String expDate) {
+		WebElement expDate_ele=InventoryPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Exp Date']");
+		expDate_ele.sendKeys(expDate);
+	}
 
-	public void selectExpireYearDate(String year_value, String month_value) throws InterruptedException {
+	public void selectExpireYearDate(String year_value, String day_value) throws InterruptedException, NoSuchElementException {
 		FluentWait<WebDriver> wait = new FluentWait<>(driver);
 		wait.withTimeout(Duration.ofSeconds(120));
 		wait.pollingEvery(Duration.ofSeconds(1));
 		wait.ignoring(NoSuchElementException.class);
 		// webelement year above the calendar
 		WebElement ele_year = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__month-container']/div[1]")));
+				.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__current-month']")));
 		while (true) {
+			
 			String year = InventoryPage.super.findAnyElement(All_Locators.XPATH,
-					"//div[@class='react-datepicker__month-container']/div[1]").getText();
-			if (year.equalsIgnoreCase(year_value))
+					"//div[@class='react-datepicker__current-month']").getText();
+			if (year.equalsIgnoreCase(year_value)) {
 				break;
-			else
-				driver.findElement(By.xpath("//button[@aria-label='Next Year']")).click();
-		}
+			
+			}else
+				driver.findElement(By.xpath("//button[@class='react-datepicker__navigation react-datepicker__navigation--next']")).click();
+			}
+		Thread.sleep(2000);
 		// month selection
-		List<WebElement> allMonths = InventoryPage.super.findAllElements(All_Locators.XPATH,
+		List<WebElement> allDays = InventoryPage.super.findAllElements(All_Locators.XPATH,
 				"//div[@aria-selected='false']");
-		for (WebElement ele : allMonths) {
-			String months = ele.getText();
-			if (months.equalsIgnoreCase(month_value)) {
+		for (WebElement ele : allDays) {
+			String days = ele.getText();
+			if (days.equalsIgnoreCase(day_value)) {
 				ele.click();
 				break;
 			}
 		}
-		Thread.sleep(5000);
 	}
 
+	public void entermfgdate(String mfgDate) {
+		WebElement mfgDate_ele=InventoryPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Mfg Date']");
+		mfgDate_ele.sendKeys(mfgDate);
+	}
 	public void enterSerialNumber(String serialNumber) {
 		WebElement serialNumber_ele = InventoryPage.super.findAnyElement(All_Locators.XPATH,
 				"//input[@placeholder='Enter Serial Numbers']");

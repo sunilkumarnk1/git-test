@@ -1,23 +1,26 @@
 package com.statwig.workspace.pageobjects;
 
-import com.statwig.workspace.testrunner.OrderTestRunner;
-import com.statwig.workspace.utility.BasePage;
-import com.statwig.workspace.utility.VaccineLedgerConstants;
-import dev.failsafe.internal.util.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.statwig.workspace.utility.VaccineLedgerConstants;
-
-import java.awt.*;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import com.statwig.workspace.utility.BasePage;
+
+import dev.failsafe.internal.util.Assert;
 
 public class OrderPage extends BasePage {
 
@@ -38,7 +41,7 @@ public class OrderPage extends BasePage {
 
     public void clickSelectProductCategory() throws InterruptedException {
         Thread.sleep(5000);
-        WebElement productCategoryButton=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class='no-border css-b62m3t-container']//div[contains(@class,'css-ackcql')]");
+        WebElement productCategoryButton=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-2-input']");
         productCategoryButton.click();
     }
 
@@ -47,8 +50,8 @@ public class OrderPage extends BasePage {
         wait.withTimeout(Duration.ofSeconds(120));
         wait.pollingEvery(Duration.ofSeconds(1));
         wait.ignoring(NoSuchElementException.class);
-        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=' css-yt9ioa-option']")));
-        List<WebElement> list=driver.findElements(By.xpath("//div[@aria-disabled='false']"));
+        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("react-select-2-option-0")));
+        List<WebElement> list=driver.findElements(By.id("react-select-2-option-0"));
         System.out.println("size of the list is:"+list.size());
 
         for(WebElement eachElement : list){
@@ -61,19 +64,18 @@ public class OrderPage extends BasePage {
         Thread.sleep(2000);
     }
 
-    public void clickSelectProductName() throws InterruptedException {
-        WebElement ele_productName=OrderPage.super.findAnyElement(All_Locators.XPATH,"(//div[contains(@class,'css-ackcql')])[2]");
+    public void clickSelectProductName(){
+        WebElement ele_productName=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-3-input']");
         ele_productName.click();
-        Thread.sleep(2000);
     }
 
-    public void selectProductName(String productName) throws InterruptedException {
+    public void selectProductName(String productName){
         FluentWait<WebDriver> wait=new FluentWait<>(driver);
         wait.withTimeout(Duration.ofSeconds(120));
         wait.pollingEvery(Duration.ofSeconds(1));
         wait.ignoring(NoSuchElementException.class);
-        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=' css-yt9ioa-option']")));
-        List<WebElement> listOfProductNames=driver.findElements(By.xpath("//div[@aria-disabled='false']"));
+        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("react-select-3-option-0")));
+            List<WebElement> listOfProductNames=driver.findElements(By.xpath("//div[@aria-disabled='false']"));
         for(WebElement ele:listOfProductNames){
             String text=ele.getText();
             if(text.equalsIgnoreCase(productName)){
@@ -81,7 +83,6 @@ public class OrderPage extends BasePage {
                 break;
             }
         }
-        Thread.sleep(5000);
     }
 
     public void enterQuantity(String quantity){
@@ -94,14 +95,13 @@ public class OrderPage extends BasePage {
         addanotherProduct_ele.click();
     }
 
-    public void clickSelectOrganizationType() throws InterruptedException {
-        WebElement selectOrganizationType_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"(//div[contains(@class,'css-ackcql')])[3]");
+    public void clickSelectOrganizationType(){
+        WebElement selectOrganizationType_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-4-input']");
         selectOrganizationType_ele.click();
-        Thread.sleep(5000);
     }
 
     public void selectOrganizationType(String organizationType) throws InterruptedException {
-        WebElement org_type=OrderPage.super.findAnyElement(All_Locators.XPATH,"//label[text()='Organization Type']/following::input[1]");
+        WebElement org_type=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-4-input']");
         org_type.sendKeys(organizationType);
 
         Thread.sleep(2000);
@@ -136,7 +136,7 @@ public class OrderPage extends BasePage {
         action.moveToElement(organizationNameButton_ele).click(organizationNameButton_ele).build().perform();
     }
 
-    public void enterOrganizationName(String organizationName) throws InterruptedException {
+    public void selectOrganizationName(String organizationName) throws InterruptedException {
         Thread.sleep(5000);
         int count=0;
         List<WebElement> organizationName_ele=OrderPage.super.findAllElements(All_Locators.XPATH,"//div[text()='"+organizationName+"']");
@@ -154,19 +154,17 @@ public class OrderPage extends BasePage {
         else{
             System.out.println("options you want to select is not available in DD");
         }
-        Thread.sleep(2000);
     }
 
     public void clickToOrganizationType() throws InterruptedException {
-        WebElement to_org_Type_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"(//div[contains(@class,'css-ackcql')])[5]");
+        WebElement to_org_Type_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-6-input']");
         to_org_Type_ele.click();
-        Thread.sleep(5000);
     }
 
     public void selectToOrganizationType(String organizationType) throws InterruptedException {
         Thread.sleep(5000);
         int count=0;
-        List<WebElement> toOrganizationType_ele=OrderPage.super.findAllElements(All_Locators.XPATH,"//div[text()='"+organizationType+"']");
+        List<WebElement> toOrganizationType_ele=OrderPage.super.findAllElements(All_Locators.XPATH,"//div[@aria-disabled='false']");
         for(WebElement ele:toOrganizationType_ele){
             organizationType=ele.getText();
             if(organizationType.contains(organizationType)){
@@ -182,6 +180,30 @@ public class OrderPage extends BasePage {
             System.out.println("options you want to select is not available in DD");
         }
         Thread.sleep(2000);
+    }
+    
+    public void clickToOrgName() {
+    	WebElement toOrgName_ele=OrderPage.super.findAnyElement(All_Locators.XPATH, "//input[@id='react-select-9-input']/..");
+    	toOrgName_ele.click();
+    }
+    
+    public void selectToOrgName(String toOrgName) {
+    	int count =0;
+    	List<WebElement> toOrganizations=OrderPage.super.findAllElements(All_Locators.XPATH, "//div[@aria-disabled='false']");
+    	for(WebElement ele:toOrganizations) {
+    		String text=ele.getText();
+    		if(text.equalsIgnoreCase(toOrgName)) {
+    			ele.click();
+    			count++;
+    			break;
+    		}
+    	}
+    	if(count!=0) {
+    		System.out.println(toOrgName+ "as been selected");
+    	}
+    	else {
+    		System.out.println(toOrgName+ " is not selected");
+    	}
     }
 
     public void clickRegion(){
@@ -260,13 +282,13 @@ public class OrderPage extends BasePage {
     }
 
     public void clickDeliveryLocation(){
-        WebElement deliveryLocation_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"(//div[contains(@class,'css-ackcql')])[9]");
+        WebElement deliveryLocation_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-10-input']");
         deliveryLocation_ele.click();
     }
 
     public void selectDeliveryLocation(String deliveryLocation) throws InterruptedException {
         int count=0;
-        List<WebElement> todeliveryLocation_ele=OrderPage.super.findAllElements(All_Locators.XPATH,"//div[text()='"+deliveryLocation+"']");
+        List<WebElement> todeliveryLocation_ele=OrderPage.super.findAllElements(All_Locators.XPATH,"//div[@aria-disabled='false']");
         for(WebElement ele:todeliveryLocation_ele){
             deliveryLocation=ele.getText();
             if(deliveryLocation.contains(deliveryLocation)){
@@ -338,6 +360,16 @@ public class OrderPage extends BasePage {
     public void clickOnOrdersReceived(){
         WebElement ordersReceived_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[text()='Orders Received']");
         ordersReceived_ele.click();
+    }
+
+    public void clickOnFirstView(){
+        WebElement firstView_button=OrderPage.super.findAnyElement(All_Locators.XPATH,"//tr[1]/td/a[text()='View']");
+        firstView_button.click();
+    }
+
+    public void clickOnAccept(){
+        WebElement accept_ele=OrderPage.super.findAnyElement(All_Locators.XPATH,"//button[text()='Accept Order']");
+        accept_ele.click();
     }
 
     public void selectOrderToAcceptReject(String orderID){

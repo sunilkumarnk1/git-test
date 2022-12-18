@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -32,7 +33,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickSelectOrganizationLocation() throws InterruptedException {
-        WebElement org_loc_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[2]");
+        WebElement org_loc_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-4-input']");
         org_loc_ele.click();
         Thread.sleep(2000);
     }
@@ -49,7 +50,7 @@ public class ShipmentPage extends BasePage {
             }
         }
         if (count != 0) {
-            System.out.println(orgLocation + " has been selected in the DD");
+            System.out.println(orgLocation + " has been selected from the list");
         } else {
             System.out.println("options you want to select is not available in DD");
         }
@@ -57,7 +58,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickToOrgType() {
-        WebElement toOrgLocation_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[3]");
+        WebElement toOrgLocation_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-5-input']");
         toOrgLocation_ele.click();
     }
 
@@ -81,7 +82,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickToOrgName() {
-        WebElement orgName_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[4]");
+        WebElement orgName_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-6-input']");
         orgName_ele.click();
     }
 
@@ -143,7 +144,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickOnDeliveryLocation() throws InterruptedException {
-        WebElement deliverylocation_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[5]");
+        WebElement deliverylocation_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-7-input']");
         deliverylocation_ele.click();
     }
 
@@ -171,23 +172,30 @@ public class ShipmentPage extends BasePage {
         transitNumber_ele.sendKeys(transitNumber);
     }
 
-    public void enterLabelCode(String labelCode) {
+    public void enterLabelCode(String labelCode) throws InterruptedException {
         WebElement labelCode_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Label code']");
         labelCode_ele.sendKeys(labelCode);
+        Thread.sleep(2000);
     }
 
-    public void clickOnShipmentDate() {
+    public void clickOnShipmentDate() throws InterruptedException {
         WebElement shipmentDate_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Enter Shipment Date']");
         shipmentDate_ele.click();
+        Thread.sleep(2000);
+    }
+
+    public void enterDate(){
+        WebElement shipmentDate=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//div[@aria-current='date']");
+        shipmentDate.click();
     }
 
     public void enterShipmentDate(String year_value, String month_value, String date_value) throws InterruptedException {
-        FluentWait<WebDriver> wait = new FluentWait<>(driver);
-        wait.withTimeout(Duration.ofSeconds(120));
-        wait.pollingEvery(Duration.ofSeconds(1));
-        wait.ignoring(NoSuchElementException.class);
+//        FluentWait<WebDriver> wait = new FluentWait<>(driver);
+//        wait.withTimeout(Duration.ofSeconds(120));
+//        wait.pollingEvery(Duration.ofSeconds(1));
+//        wait.ignoring(NoSuchElementException.class);
         //year selection
-        WebElement ele_year = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='react-datepicker__year-read-view--selected-year']")));
+//        WebElement ele_year = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='react-datepicker__year-read-view--selected-year']")));
         while (true) {
             String year = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[@class='react-datepicker__year-read-view--selected-year']").getText();
             if (year.equalsIgnoreCase(year_value))
@@ -197,7 +205,7 @@ public class ShipmentPage extends BasePage {
         }
         //month selection
         while (true) {
-            WebElement ele_month = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__current-month react-datepicker__current-month--hasYearDropdown']")));
+//            WebElement ele_month = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='react-datepicker__current-month react-datepicker__current-month--hasYearDropdown']")));
             String month = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class='react-datepicker__current-month react-datepicker__current-month--hasYearDropdown']").getText();
             if (month.equalsIgnoreCase(month_value))
                 break;
@@ -226,14 +234,14 @@ public class ShipmentPage extends BasePage {
         wait.withTimeout(Duration.ofSeconds(120));
         wait.pollingEvery(Duration.ofSeconds(1));
         wait.ignoring(NoSuchElementException.class);
-        //year selection
+
         WebElement ele_year = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='react-datepicker__year-read-view--selected-year']")));
         while (true) {
             String year = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[@class='react-datepicker__year-read-view--selected-year']").getText();
             if (year.equalsIgnoreCase(year_value))
                 break;
             else
-                driver.findElement(By.xpath("//span[@class='react-datepicker__year-read-view--down-arrow']")).click();
+                driver.findElement(By.xpath("//span[text()='Next Month']")).click();
         }
         //month selection
         while (true) {
@@ -257,7 +265,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickOnProductCategory() {
-        WebElement productCategory_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[6]");
+        WebElement productCategory_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-8-input']");
         productCategory_ele.click();
     }
 
@@ -281,7 +289,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void clickOnProductName() {
-        WebElement productName_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[7]");
+        WebElement productName_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[@class=' css-19bb58m']/input[@id='react-select-9-input']");
         productName_ele.click();
     }
 
@@ -305,6 +313,7 @@ public class ShipmentPage extends BasePage {
     }
 
     public void enterQuantity(String quantity) {
+        //input[@class='form-control text-center input1']
         WebElement quanity_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//input[@placeholder='Quantity']");
         quanity_ele.clear();
         quanity_ele.sendKeys(quantity);
@@ -324,7 +333,7 @@ public class ShipmentPage extends BasePage {
 
     public void clickPencilEdit() throws InterruptedException {
         Thread.sleep(2000);
-        WebElement pencilEdit_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//i)[1]");
+        WebElement pencilEdit_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//button[@class='btn-sm btn-yellow d-width']");
         pencilEdit_ele.click();
     }
 
@@ -342,17 +351,29 @@ public class ShipmentPage extends BasePage {
         System.out.println("Clicked Next");
     }
 
-    public void clickOnCreateShipment() {
+    public void clickOnCreateShipment() throws InterruptedException {
         WebElement createShipment_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Create Shipment']");
         createShipment_ele.click();
         System.out.println("Shipment Created");
+        Thread.sleep(2000);
     }
 
     public void clickOnOrderId() throws InterruptedException {
-        WebElement orderid_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "(//div[contains(@class,'css-ackcql')])[1]");
-        orderid_ele.click();
+        WebElement orderid_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[text()='Enter Order ID']");
+        Actions actions=new Actions(driver);
+        actions.click(orderid_ele).build().perform();
     }
 
+    public void orderIDSelection() throws InterruptedException {
+        List<WebElement> orderIds=ShipmentPage.super.findAllElements(All_Locators.XPATH,"//div[@aria-disabled='false']");
+        System.out.println(orderIds.size());
+        int size=orderIds.size();
+        String sizeString=Integer.toString(size);
+        WebElement orderId_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//div[@aria-disabled='false']["+sizeString+"]");
+        orderId_ele.click();
+        Thread.sleep(2000);
+
+    }
     public void enterOrderId(String orderId) {
         WebElement enterOrderId_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//div[text()='" + orderId + "']");
         enterOrderId_ele.click();
@@ -387,18 +408,36 @@ public class ShipmentPage extends BasePage {
         }
     }
 
+    public void enterBatchQty() throws InterruptedException {
+        WebElement qty_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//input[@placeholder='Quantity']");
+        String qty=qty_ele.getAttribute("value");
+        System.out.println(qty);
+        WebElement batchQty=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//div[@class='rTableRow mb-1']//div[6]//div/input[@ value='"+qty+"']");
+        //div[@class='rTableRow mb-1']//div[6]//div/input[@ value='500']
+        String actual_qty=batchQty.getText();
+        System.out.println(actual_qty);
+        if(qty.contains(actual_qty)){
+            Actions actions=new Actions(driver);
+            WebElement checkBox=driver.findElement(By.xpath("//div[@class='rTableRow mb-1']//div[6]//div/input[@ value='500']/../../../input[@type='checkbox']"));
+            actions.moveToElement(checkBox).click().build().perform();
+        }else{
+            System.out.println("exact batch quantity is not present");
+        }
+        Thread.sleep(5000);
+    }
+
     public void enterQuantityFromBatchWithOrderFull() throws InterruptedException, AWTException {
         //order id:PO101410
         List<WebElement> fetchbuttons = ShipmentPage.super.findAllElements(All_Locators.XPATH, "(//div[contains(text(),'Fetch')])");
         System.out.println(fetchbuttons.size());
         for (int i = 1; i < fetchbuttons.size(); i++) {
-            if (fetchbuttons.size()>1) {
+            if (fetchbuttons.size() > 1) {
                 driver.findElement(By.xpath("(//div[contains(text(),'Fetch')])[" + i + "]")).click();
                 driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")).click();
                 driver.findElement(By.xpath("//button[text()='Next']")).click();
                 Alert a = driver.switchTo().alert();
                 a.accept();
-            }else {
+            } else {
                 driver.findElement(By.xpath("(//div[contains(text(),'Fetch')])[1]")).click();
                 driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
                 driver.findElement(By.xpath("//button[text()='Next']")).click();
@@ -475,6 +514,35 @@ public class ShipmentPage extends BasePage {
     public void clickUpdateStatusButton() {
         WebElement updateStatus_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//span[text()='Update Status']");
         updateStatus_ele.click();
+    }
+
+    public void viewElementDirectClick() {
+        WebElement view_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//tr[1]/td[6]/div[1]/button[1]/following::a[1]");
+        view_ele.click();
+    }
+
+    public void receiveShipmentButton() {
+        WebElement receiveShipmentButton_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//b[text()='Receive Shipment']");
+        receiveShipmentButton_ele.click();
+    }
+
+
+
+    public void enterQtyDirect() {
+        WebElement sentQty_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//p[text()='Quantity Received']/../preceding::p[@class='info-content-text'][1]");
+        String qty = sentQty_ele.getText();
+        int first_word=qty.indexOf(" ");
+        String firstWord=qty.substring(0,first_word);
+        System.out.println(firstWord);
+        driver.findElement(By.xpath("//input[@placeholder='Enter Quantity']")).sendKeys(firstWord);
+    }
+
+    public void clickOnSaveReceive(){
+        WebElement save_button=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//button[text()='Save']");
+        save_button.click();
+        WebElement receive_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//span[text()='Receive Shipment']");
+        Actions actions=new Actions(driver);
+        actions.moveToElement(receive_ele).click().perform();
     }
 
     public void receiveShipment(String receiveShipmentId) throws InterruptedException {
