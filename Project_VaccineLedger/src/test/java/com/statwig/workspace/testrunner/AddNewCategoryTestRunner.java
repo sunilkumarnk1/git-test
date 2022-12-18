@@ -1,27 +1,29 @@
 package com.statwig.workspace.testrunner;
 
+import java.awt.AWTException;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import com.statwig.workspace.pageobjects.HomePage;
 import com.statwig.workspace.pageobjects.InventoryPage;
+import com.statwig.workspace.pageobjects.ProductList;
 import com.statwig.workspace.utility.BaseTest;
 import com.statwig.workspace.utility.CommonUtility;
 
 public class AddNewCategoryTestRunner extends BaseTest {
 
     @Test
-    public void verifyAddCategory_Test_002() throws InterruptedException {
+    public void verifyAddCategory_Test_002() throws InterruptedException, AWTException {
         HomePage homePage= PageFactory.initElements(super.driver,HomePage.class);
-       // homePage.login();
+        languageTranslateHome();
         Reporter.log("clicked on login button");
 
-        String emailId= CommonUtility.getPropertyValue("homepage","homepage.emailid");
+        String emailId= CommonUtility.getPropertyValue("addnewcategory","addnewcategory.loginmail");
         homePage.enterEmailId(emailId);
         Reporter.log(emailId+" is Entered");
 
-       // homePage.clickContinueButton();
         homePage.clickSigninButton();
         Reporter.log("Clicked on Continue Button");
 
@@ -32,25 +34,13 @@ public class AddNewCategoryTestRunner extends BaseTest {
         homePage.clickVerifyButton();
         Reporter.log("Clicked on Verify Button");
 
-        InventoryPage ip=PageFactory.initElements(super.driver,InventoryPage.class);
-        ip.clickOnInventory();
-        Reporter.log("Clicked on Inventory");
-
-        ip.clickViewAll();
-        Reporter.log("Clicked on View All");
-
-        ip.clickOnAddNewCategory();
-        Reporter.log("Clicked on Add New Category");
-
-        String input_categoryName=CommonUtility.getPropertyValue("addnewcategory","addnewcategory.name");
-        ip.enterCategoryName(input_categoryName);
-        Reporter.log(input_categoryName+" is Entered");
-
-        String input_categoryDescription=CommonUtility.getPropertyValue("addnewcategory","addnewcategory.description");
-        ip.enterDescriptionForCategory(input_categoryDescription);
-        Reporter.log(input_categoryDescription+" is Entered");
-
-        ip.clickOnAddNewCategory();
-        Reporter.log("Clicked on Add New Category");
+       ProductList pl=PageFactory.initElements(super.driver, ProductList.class);
+       pl.clickUser();
+       pl.switchToAdmin();
+       pl.clickProductList();
+       pl.clickProductCategory();
+       
+       String productCategoryName=CommonUtility.getPropertyValue("addnewcategory","addnewcategory.productcategory");
+       pl.selectProductCategory(productCategoryName);
     }
 }

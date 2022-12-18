@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class HomePageTitleValidationTestRunner extends BaseTest {
 
-    @Test(groups={"smoke", "regression","uat"})
+    @Test
     public void verifyHomePage_Test_001() throws InterruptedException {
 
         String expectedTitle = CommonUtility.getPropertyValue("homepage", "homepage.title");
