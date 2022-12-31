@@ -2,6 +2,7 @@ package com.statwig.workspace.utility;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     public BasePage(WebDriver driver){
         this.driver=driver;
@@ -136,5 +137,10 @@ public class BasePage {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static void scrollFullUp(){
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.HOME).build().perform();
     }
 }

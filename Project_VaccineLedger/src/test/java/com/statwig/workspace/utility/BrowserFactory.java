@@ -12,9 +12,8 @@ public class BrowserFactory {
     private static WebDriver driver;
 
     public static WebDriver openLocalBrowser(String bname){
-
         if(bname.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver","src\\test\\resources\\all_executables\\chromedriver_1.exe");
+            System.setProperty("webdriver.chrome.driver","src\\test\\resources\\all_executables\\chromedriver1.exe");
             return driver=new ChromeDriver();
         }else if(bname.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.gecko.driver","src\\test\\resources\\all_executables\\geckodriver.exe");

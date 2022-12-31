@@ -1,11 +1,13 @@
 package com.statwig.workspace.utility;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 public class BaseTest {
     private String browsername, runmode;
@@ -64,4 +66,34 @@ public class BaseTest {
         Reporter.log("All Tests Completed - Reports are avilable in target/surefire-reports/emailable-report.html");
         Reporter.log("Screenshots are available in src/resources/screenshots folder");
     }
+    
+    public void languageTranslateHome() {
+    	driver.findElement(By.xpath("//p[text()='Spa']")).click();
+    	driver.findElement(By.xpath("//p[text()='Inglés']")).click();
+    }
+    
+    public void implicitWait() {
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
+
+//    @Parameters({"browsername","runmode"})
+//    @BeforeTest
+//    public WebDriver initializeDriver() throws IOException {
+//        Properties prop=new Properties();
+//        FileInputStream fis=new FileInputStream("src//test//resources//testdata//config.properties");
+//        prop.load(fis);
+//        String browserName=prop.getProperty("config.browsername");
+//        if(browserName.equalsIgnoreCase("chrome")){
+//            System.setProperty("webdriver.chrome.driver","src\\test\\resources\\all_executables\\chromedriver1.exe");
+//            driver=new ChromeDriver();
+//        }else if(browserName.equalsIgnoreCase("firefox")){
+//            System.setProperty("webdriver.gecko.driver","src\\test\\resources\\all_executables\\geckodriver.exe");
+//            driver=new FirefoxDriver();
+//        }else if(browserName.equalsIgnoreCase("edge")){
+//            System.setProperty("webdriver.edge.driver","src\\test\\resources\\all_executables\\msedgedriver.exe");
+//            driver=new EdgeDriver();
+//        }
+//        return driver;
+//    }
+    
 }
