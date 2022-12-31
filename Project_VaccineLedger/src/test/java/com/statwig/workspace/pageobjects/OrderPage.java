@@ -46,12 +46,12 @@ public class OrderPage extends BasePage {
     }
 
     public void sendTextIntoSelectProductCategory(String selectProduct) throws InterruptedException {
-        FluentWait<WebDriver> wait=new FluentWait<>(driver);
-        wait.withTimeout(Duration.ofSeconds(120));
-        wait.pollingEvery(Duration.ofSeconds(1));
-        wait.ignoring(NoSuchElementException.class);
-        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("react-select-2-option-0")));
-        List<WebElement> list=driver.findElements(By.id("react-select-2-option-0"));
+//        FluentWait<WebDriver> wait=new FluentWait<>(driver);
+//        wait.withTimeout(Duration.ofSeconds(120));
+//        wait.pollingEvery(Duration.ofSeconds(1));
+//        wait.ignoring(NoSuchElementException.class);
+//        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("react-select-2-option-0")));
+        List<WebElement> list=driver.findElements(By.xpath("//div[@aria-disabled='false']"));
         System.out.println("size of the list is:"+list.size());
 
         for(WebElement eachElement : list){
@@ -64,17 +64,13 @@ public class OrderPage extends BasePage {
         Thread.sleep(2000);
     }
 
-    public void clickSelectProductName(){
+    public void clickSelectProductName() throws InterruptedException {
         WebElement ele_productName=OrderPage.super.findAnyElement(All_Locators.XPATH,"//div[@class=' css-19bb58m']/input[@id='react-select-3-input']");
         ele_productName.click();
+        Thread.sleep(5000);
     }
 
     public void selectProductName(String productName){
-        FluentWait<WebDriver> wait=new FluentWait<>(driver);
-        wait.withTimeout(Duration.ofSeconds(120));
-        wait.pollingEvery(Duration.ofSeconds(1));
-        wait.ignoring(NoSuchElementException.class);
-        WebElement ele_category=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("react-select-3-option-0")));
             List<WebElement> listOfProductNames=driver.findElements(By.xpath("//div[@aria-disabled='false']"));
         for(WebElement ele:listOfProductNames){
             String text=ele.getText();

@@ -528,20 +528,23 @@ public class ShipmentPage extends BasePage {
 
 
 
-    public void enterQtyDirect() {
+    public void enterQtyDirect() throws InterruptedException {
         WebElement sentQty_ele = ShipmentPage.super.findAnyElement(All_Locators.XPATH, "//p[text()='Quantity Received']/../preceding::p[@class='info-content-text'][1]");
         String qty = sentQty_ele.getText();
         int first_word=qty.indexOf(" ");
         String firstWord=qty.substring(0,first_word);
         System.out.println(firstWord);
         driver.findElement(By.xpath("//input[@placeholder='Enter Quantity']")).sendKeys(firstWord);
+        Thread.sleep(2000);
     }
 
-    public void clickOnSaveReceive(){
+    public void clickOnSaveReceive() throws InterruptedException {
         WebElement save_button=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//button[text()='Save']");
         save_button.click();
         WebElement receive_ele=ShipmentPage.super.findAnyElement(All_Locators.XPATH,"//span[text()='Receive Shipment']");
+        Thread.sleep(5000);
         Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.PAGE_UP).build().perform();
         actions.moveToElement(receive_ele).click().perform();
     }
 
