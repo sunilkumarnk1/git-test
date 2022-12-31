@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Default Suite">
+    <test thread-count="5" name="AddInventoryTest">
+        <parameter name="browsername" value="chrome"></parameter>
+        <parameter name="runmode" value="local"></parameter>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.statwig.workspace.testrunner.AddNewInventoryTestRunner">
+            </class>
+        </classes>
+    </test>
+
+
+    <test thread-count="5" name="ShipmentPageTest">
+        <parameter name="browsername" value="chrome"></parameter>
+        <parameter name="runmode" value="local"></parameter>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.statwig.workspace.testrunner.ShipmentTestRunner">
+                <methods>
+                    <exclude name="verifyCreateShipmentWithOrderFullQuantity_Test_002"/>
+                    <exclude name="verifyReceiveShipmentPharmacy_Test_006"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test thread-count="5" name="OrderPageTest">
+        <parameter name="browsername" value="chrome"></parameter>
+        <parameter name="runmode" value="local"></parameter>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.statwig.workspace.testrunner.OrderTestRunner">
+            </class>
+        </classes>
+    </test>
+
+    <test thread-count="5" name="ShipmentPageTestLast">
+        <parameter name="browsername" value="chrome"></parameter>
+        <parameter name="runmode" value="local"></parameter>
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.statwig.workspace.testrunner.ShipmentTestRunner">
+                <methods>
+                    <exclude name="verifyCreateShipment_CA_Test_001"/>
+                    <exclude name="verifyReceiveShipment_D_Test_006"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
